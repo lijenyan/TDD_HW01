@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TDD_HW01;
 
 namespace TDD_HW01
 {
@@ -11,11 +12,20 @@ namespace TDD_HW01
         static void Main(string[] args)
         {
             List<Order> Orders = GetOrders();
-            OrderAggregate orderAggregate = new OrderAggregate();
-            orderAggregate.Orders = Orders;
-            orderAggregate.NumIntoAGroup = 4;
-            orderAggregate.DoAggregate(x=>x.Revenue);
-            foreach (int result in orderAggregate.SumResults)
+            //Order
+            //GenericAggragate<Order> genericAggragate = new GenericAggragate<Order>();
+            //genericAggragate.Entities = Orders;
+            //genericAggragate.NumIntoAGroup = 4;
+            //genericAggragate.DoAggregate(x=>x.Revenue);
+
+            //Empoyee
+            List<Employee> employee  = GetEmployees();
+            GenericAggragate<Employee> genericAggragate = new GenericAggragate<Employee>();
+            genericAggragate.Entities = employee;
+            genericAggragate.NumIntoAGroup = 4;
+            genericAggragate.DoAggregate(x => x.Age);
+
+            foreach (int result in genericAggragate.SumResults)
             {
                 Console.WriteLine(string.Format("Sum is {0}", result));
             }
@@ -41,6 +51,27 @@ namespace TDD_HW01
             };
 
             return Orders;
+        }
+
+        protected static List<Employee> GetEmployees()
+        {
+            List<Employee> Entities = new List<Employee>
+            {
+                new Employee{ id=1, Name ="A1" , Age =11 ,Salary=21},
+                new Employee{ id=2, Name ="A2" , Age =12 ,Salary=22},
+                new Employee{ id=3, Name ="A3" , Age =13 ,Salary=23},
+                new Employee{ id=4, Name ="A4" , Age =14 ,Salary=24},
+                new Employee{ id=5, Name ="A5" , Age =15 ,Salary=25},
+                new Employee{ id=6, Name ="A6" , Age =16 ,Salary=26},
+                new Employee{ id=7, Name ="A7" , Age =17 ,Salary=27},
+                new Employee{ id=8, Name ="A8" , Age =18 ,Salary=28},
+                new Employee{ id=9, Name = "A9", Age =19 ,Salary=29},
+                new Employee{ id=10, Name ="A10" , Age =20 ,Salary=30},
+                new Employee{ id=11, Name ="A11" , Age =21 ,Salary=31},
+
+            };
+
+            return Entities;
         }
     }
 }

@@ -16,9 +16,8 @@ namespace TDD_HW01.Tests
         public void Test_11_Goods_3_Cost_Itmes_Into_One_Group_Each_Group_SUM_Is_6_15_24_21()
         {
             //arrange
-            var orders = ProduceOrders();
-            var target = new OrderAggregate();
-            target.Orders = orders;
+            var target = new GenericAggragate<Order>();
+            target.Entities = ProduceOrders();
             target.NumIntoAGroup = 3;
             List<int> result =new List<int> { 6, 15, 24, 21 };
             //act
@@ -32,9 +31,8 @@ namespace TDD_HW01.Tests
         public void Test_11_Goods_4_Revenue_Itmes_Into_One_Group_Each_Group_SUM_Is_50_66_60()
         {
             //arrange
-            var orders = ProduceOrders();
-            var target = new OrderAggregate();
-            target.Orders = orders;
+            var target = new GenericAggragate<Order>();
+            target.Entities = ProduceOrders();
             target.NumIntoAGroup = 4;
             List<int> result =new List<int> { 50, 66, 60 };
             //act
@@ -48,9 +46,8 @@ namespace TDD_HW01.Tests
         public void Test_Negative_Number_Itme_Result_Is_ArgumentException_With_FluentAssertion()
         {
             //arrange
-            var orders = ProduceOrders();
-            var target = new OrderAggregate();
-            target.Orders = orders;
+            var target = new GenericAggragate<Order>();
+            target.Entities = ProduceOrders();
             target.NumIntoAGroup = -1;
             //act
             Action act = () => target.DoAggregate(x=>x.Revenue);
@@ -63,9 +60,8 @@ namespace TDD_HW01.Tests
         {
             //未完.不知道要如何模擬不存在的欄位
             //arrange
-            var orders = ProduceOrders();
-            var target = new OrderAggregate();
-            target.Orders = orders;
+            var target = new GenericAggragate<Order>();
+            target.Entities = ProduceOrders();
             target.NumIntoAGroup = 4;
             List<int> result =new List<int> { 50, 66, 60 };
             //act
@@ -78,9 +74,8 @@ namespace TDD_HW01.Tests
         public void Test_Zero_Itme_Result_Is_Zero()
         {
             //arrange
-            var orders = ProduceOrders();
-            var target = new OrderAggregate();
-            target.Orders = orders;
+            var target = new GenericAggragate<Order>();
+            target.Entities = ProduceOrders();
             target.NumIntoAGroup = 0;
             List<int> result =new List<int> { 0 };
             //act
